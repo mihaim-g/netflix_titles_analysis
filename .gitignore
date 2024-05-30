@@ -1,2 +1,3 @@
 *.lock
-terraform_file/.terraform.lock.hcl
+terraform_files/.terraform.lock.hcl
+terraform_files/.terraform/
