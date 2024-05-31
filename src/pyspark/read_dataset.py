@@ -1,5 +1,6 @@
 import os
 import boto3
+from pyspark import SparkConf
 from pyspark.sql import SparkSession
 
 aws_profile='repo1-admin'
@@ -10,11 +11,18 @@ def get_aws_credentials(aws_profile: str) -> tuple:
     return(credentials.access_key, credentials.secret_key)
 
 def get_spark_session(aws_creds: tuple):
-    spark = SparkSession.builder \
-        .appName("Read Zipped CSV from S3") \
-        .getOrCreate()
+    conf = SparkConf()
+    conf.set('spark.jars.packages', 'org.apache.hadoop:hadoop-aws:3.2.0')
+    conf.set('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider')
+    # conf.set('spark.hadoop.fs.s3a.access.key', aws_creds[0])
+    # conf.set('spark.hadoop.fs.s3a.secret.key', aws_creds[1])
+    conf.set('fs.s3a.access.key', aws_creds[0])
+    conf.set('fs.s3a.secret.key', aws_creds[1])
+    spark = SparkSession.builder.config(conf=conf).getOrCreate()
     return spark
 
 if __name__ == '__main__':
     creds = get_aws_credentials(aws_profile)
     spark = get_spark_session(creds)
+    df = spark.read.csv('s3a://mituca-repo1-raw-data/raw_input/netflix_titles.csv.gz', inferSchema=True)
+    df.show(10)
