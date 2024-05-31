@@ -12,10 +12,6 @@ def get_aws_credentials(aws_profile: str) -> tuple:
 
 def get_spark_session(aws_creds: tuple):
     conf = SparkConf()
-    conf.set('spark.jars.packages', 'org.apache.hadoop:hadoop-aws:3.2.0')
-    conf.set('spark.hadoop.fs.s3a.aws.credentials.provider', 'org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider')
-    # conf.set('spark.hadoop.fs.s3a.access.key', aws_creds[0])
-    # conf.set('spark.hadoop.fs.s3a.secret.key', aws_creds[1])
     conf.set('fs.s3a.access.key', aws_creds[0])
     conf.set('fs.s3a.secret.key', aws_creds[1])
     spark = SparkSession.builder.config(conf=conf).getOrCreate()
