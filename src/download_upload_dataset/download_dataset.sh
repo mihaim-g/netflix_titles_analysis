@@ -2,11 +2,17 @@
 
 AWS_PROFILE=repo1-admin
 DATASET=netflix-movies-and-tv-shows
-FILE_NAME=${DATASET}.zip
+DOWNLOADED_FILE_NAME=${DATASET}.zip
+UNZIPPED_FILE_NAME=netflix_titles.csv
+GZIPPED_FILE_NAME=${UNZIPPED_FILE_NAME}.gz
 BUCKET=mituca-repo1-raw-data
 
 kaggle datasets download -d rahulvyasm/${DATASET}
 
-aws s3 cp ${FILE_NAME} s3://${BUCKET}/raw_input/${FILE_NAME} --profile ${AWS_PROFILE}
+unzip ${DOWNLOADED_FILE_NAME}
+gzip ${UNZIPPED_FILE_NAME}
 
-rm ${FILE_NAME}
+aws s3 cp ${GZIPPED_FILE_NAME} s3://${BUCKET}/raw_input/${GZIPPED_FILE_NAME} --profile ${AWS_PROFILE}
+
+rm ${GZIPPED_FILE_NAME}
+rm ${DOWNLOADED_FILE_NAME}
