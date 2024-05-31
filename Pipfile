@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 kaggle = "*"
+pyspark = "*"
+boto3 = "*"
 
 [dev-packages]
 
