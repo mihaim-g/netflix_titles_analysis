@@ -1,11 +1,12 @@
-from src.pyspark.read_dataset import get_aws_credentials
+from conftest import aws_credentials, mocked_spark_session
+from src.pyspark.read_dataset import get_aws_credentials, get_spark_session
 
 
-def test_get_aws_credentials(mocker):
+def test_get_aws_credentials(mocker, aws_credentials):
     mock_session = mocker.Mock()
     mock_credentials = mocker.Mock()
-    mock_credentials.access_key = 'fake_access_key'
-    mock_credentials.secret_key = 'fake_secret_key'
+    mock_credentials.access_key = aws_credentials[0]
+    mock_credentials.secret_key = aws_credentials[1]
 
     mock_session.get_credentials.return_value = mock_credentials
 
@@ -16,5 +17,9 @@ def test_get_aws_credentials(mocker):
 
     assert access_key == 'fake_access_key'
     assert secret_key == 'fake_secret_key'
+    
+    
+def test_get_spark_session(mocker, mocked_spark_session):
+    pass
     
     
