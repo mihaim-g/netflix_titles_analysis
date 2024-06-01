@@ -17,4 +17,4 @@ def test_get_aws_credentials(mocker):
     assert access_key == 'fake_access_key'
     assert secret_key == 'fake_secret_key'
     
-
+    
