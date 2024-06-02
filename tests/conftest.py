@@ -1,5 +1,4 @@
 import pytest
-import pyspark
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
 
@@ -9,9 +8,9 @@ def aws_credentials() -> tuple:
     return 'fake_access_key', 'fake_secret_key'
 
 
-@pytest.fixture
-def mocked_spark_session(aws_credentials):
+@pytest.fixture(scope="session")
+def test_spark_session():
     conf = SparkConf()
-    conf.set('fs.s3a.access.key', aws_credentials[0])
-    conf.set('fs.s3a.secret.key', aws_credentials[1])
+    conf.set('fs.s3a.access.key', 'fake_access_key')
+    conf.set('fs.s3a.secret.key', 'fake_secret_key')
     return SparkSession.builder.config(conf=conf).getOrCreate()
