@@ -3,5 +3,4 @@ terraform_files/.terraform.lock.hcl
 terraform_files/.terraform/
 terraform_files/terraform.tfstate
 terraform_files/terraform.tfstate.backup
-src/pyspark/__pycache__/
-tests/__pycache__/
+__pycache__/
