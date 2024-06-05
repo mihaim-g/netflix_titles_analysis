@@ -17,7 +17,12 @@ class TestTitlesDF:
         instance = TitlesDF(spark_fixture, temp_csv_file)
         actual_df = instance.get_df()
         expected_df = spark_fixture.read.options(header=True, inferSchema=True).csv(temp_csv_file)
-        
+
         assert actual_df.collect() == expected_df.collect()
         mock_sanitize.assert_called_once()
         os.remove(temp_csv_file)
+        
+    
+    def test_drop_unwanted_columns(self, spark_fixture):
+        
+        
