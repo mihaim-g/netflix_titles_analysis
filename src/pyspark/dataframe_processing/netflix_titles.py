@@ -1,4 +1,4 @@
-class TitlesDF:
+class Titles:
     def __init__(self, spark_session, file_name):
         self.__titles_df = spark_session.read.options(header=True, inferSchema=True).csv(file_name)
         self.sanitize_input()

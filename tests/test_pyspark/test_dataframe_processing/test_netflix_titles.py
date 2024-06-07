@@ -1,11 +1,11 @@
 import os
 from unittest.mock import patch
 import pandas as pd
-from src.pyspark.dataframe_processing.netflix_titles import TitlesDF
+from src.pyspark.dataframe_processing.netflix_titles import Titles
 
-class TestTitlesDF:
+class TestTitles:
 
-    @patch.object(TitlesDF, 'sanitize_input')
+    @patch.object(Titles, 'sanitize_input')
     def test_init(self, mock_sanitize, spark_fixture):
         df = pd.DataFrame({
             'title': ['Title1', 'Title2'],
@@ -14,7 +14,7 @@ class TestTitlesDF:
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
 
-        df_instance = TitlesDF(spark_fixture, temp_csv_file)
+        df_instance = Titles(spark_fixture, temp_csv_file)
         actual_df = df_instance.get_df()
         expected_df = spark_fixture.read.options(header=True, inferSchema=True).csv(temp_csv_file)
 
@@ -31,7 +31,7 @@ class TestTitlesDF:
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
-        df_instance = TitlesDF(spark_fixture, temp_csv_file)
+        df_instance = Titles(spark_fixture, temp_csv_file)
         unwanted_columns = [col for col in df_instance.get_df().columns if col.startswith('_c')]
         assert len(unwanted_columns) == 0
         os.remove(temp_csv_file)
@@ -44,7 +44,7 @@ class TestTitlesDF:
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
-        clean_df = TitlesDF(spark_fixture, temp_csv_file).get_df()
+        clean_df = Titles(spark_fixture, temp_csv_file).get_df()
         df = pd.DataFrame(data = {
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
@@ -52,7 +52,7 @@ class TestTitlesDF:
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
-        test_df = TitlesDF(spark_fixture, temp_csv_file).get_df()
+        test_df = Titles(spark_fixture, temp_csv_file).get_df()
         clean_df.show()
         test_df.show()
         assert test_df.collect() == clean_df.collect()
