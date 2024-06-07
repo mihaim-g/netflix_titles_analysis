@@ -11,5 +11,6 @@ FILE_NAME='s3a://mituca-repo1-raw-data/raw_input/netflix_titles.csv.gz'
 if __name__ == '__main__':
     credentials = AWSUtils(aws_profile).get_aws_credentials()
     spark = CreateSparkSession(credentials).get_spark_session()
-    titles_df = TitlesDF(spark, FILE_NAME).get_df()
-    titles_df.show(10)
+    titles = TitlesDF(spark, FILE_NAME)
+    titles.get_df().show(10)
+    
