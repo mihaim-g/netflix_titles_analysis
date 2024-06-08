@@ -1,7 +1,7 @@
 import os
 from unittest.mock import patch
 import pandas as pd
-from src.pyspark.dataframe_processing.netflix_titles import Titles
+from src.pyspark_files.dataframe_processing.netflix_titles import Titles
 
 class TestTitles:
 

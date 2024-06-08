@@ -1,8 +1,8 @@
 import os
-from utils.aws_utils import AWSUtils
-from utils.spark_session import CreateSparkSession
-from dataframe_processing.netflix_titles import Titles
-from dataframe_processing.users import Users
+from pyspark_files.utils.aws_utils import AWSUtils
+from pyspark_files.utils.spark_session import CreateSparkSession
+from pyspark_files.dataframe_processing.netflix_titles import Titles
+from pyspark_files.dataframe_processing.users import Users
 
 
 aws_profile=os.environ['AWS_PROFILE']
@@ -10,7 +10,8 @@ file_name=os.environ['TITLES_FILE_PATH']
 
 
 if __name__ == '__main__':
-    credentials = AWSUtils(aws_profile).get_aws_credentials()
+    aws_utils = AWSUtils(aws_profile)
+    credentials = aws_utils.get_aws_credentials()
     spark = CreateSparkSession(credentials).get_spark_session()
 
     titles = Titles(spark, file_name)

@@ -1,6 +1,6 @@
 
 from pyspark.sql.types import LongType, StringType
-from src.pyspark.dataframe_processing.users import Users
+from src.pyspark_files.dataframe_processing.users import Users
 
 class TestUsers:
     def test_init(self, spark_fixture):
