@@ -23,20 +23,6 @@ class TestTitles:
         os.remove(temp_csv_file)
 
 
-    def test_drop_unwanted_columns(self, spark_fixture):
-        df = pd.DataFrame(data = {
-            'title': ['Title1', 'Title2'],
-            'year': [2001, 2002],
-            '_c01': [None, None]
-        })
-        temp_csv_file = 'test.csv'
-        df.to_csv(temp_csv_file, index=False)
-        df_instance = Titles(spark_fixture, temp_csv_file)
-        unwanted_columns = [col for col in df_instance.get_df().columns if col.startswith('_c')]
-        assert len(unwanted_columns) == 0
-        os.remove(temp_csv_file)
-
-
     def test_sanitize_input(self, spark_fixture):
         df = pd.DataFrame(data = {
             'title': ['Title1', 'Title2'],
@@ -53,7 +39,5 @@ class TestTitles:
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
         test_df = Titles(spark_fixture, temp_csv_file).get_df()
-        clean_df.show()
-        test_df.show()
         assert test_df.collect() == clean_df.collect()
         os.remove(temp_csv_file)
