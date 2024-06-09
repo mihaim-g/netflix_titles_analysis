@@ -2,6 +2,7 @@ import logging
 import random
 logger = logging.getLogger(__name__)
 
+
 class Ratings:
     def __init__(self, spark_session, user_number, title_number):
         if isinstance(user_number, int) is True and 0 < user_number < 100000:
@@ -10,19 +11,18 @@ class Ratings:
             logger.error("ERROR: Too many ratings, exiting!")
             self._ratings_df = None
 
-    @staticmehtod
+    @staticmethod
     def _random_title_id(self, titles_number):
         number = random.randrange(1, titles_number)
         return 's' + str(number)
 
-    @staticmehtod
+    @staticmethod
     def _random_user_id(self, user_number):
         return random.randrange(1, user_number+1)
 
-    @staticmehtod
+    @staticmethod
     def _random_rating(self):
         return random.randrange(1, 6)
-
 
     def _generate_ratings_df(self, users, titles_number, spark):
         # An average of 10 ratings per user

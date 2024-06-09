@@ -3,6 +3,7 @@ from unittest.mock import patch
 import pandas as pd
 from src.dataframe_processing.netflix_titles import Titles
 
+
 class TestTitles:
 
     @patch.object(Titles, 'sanitize_input')
@@ -22,16 +23,15 @@ class TestTitles:
         mock_sanitize.assert_called_once()
         os.remove(temp_csv_file)
 
-
     def test_sanitize_input(self, spark_fixture):
-        df = pd.DataFrame(data = {
+        df = pd.DataFrame(data={
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
         clean_df = Titles(spark_fixture, temp_csv_file).get_df()
-        df = pd.DataFrame(data = {
+        df = pd.DataFrame(data={
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
             '_c01': [None, None]

@@ -2,9 +2,10 @@
 from pyspark.sql.types import LongType, StringType
 from src.dataframe_processing.users import Users
 
+
 class TestUsers:
     def test_init(self, spark_fixture):
-        raw_input = zip([1,2],['a', 'b'])
+        raw_input = zip([1, 2], ['a', 'b'])
 
         users = Users(spark_fixture, 2)
         actual_df = users.get_df()

@@ -1,6 +1,7 @@
 from unittest.mock import patch, Mock
 from src.utils.aws_utils import AWSUtils
 
+
 class TestAWSUtils:
     @patch('boto3.Session')
     def test_read_aws_credentials(self, mock_boto_session):

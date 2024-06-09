@@ -5,8 +5,8 @@ from dataframe_processing.netflix_titles import Titles
 from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 
-aws_profile=os.environ['AWS_PROFILE']
-dataset_file_name=os.environ['TITLES_FILE_PATH']
+aws_profile = os.environ['AWS_PROFILE']
+dataset_file_name = os.environ['TITLES_FILE_PATH']
 dataframe_destination = os.environ['DATAFRAME_DESTINATION']
 dataframe_writing_mode = os.environ['OVERWRITE_FILE_MODE']
 

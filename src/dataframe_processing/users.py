@@ -2,6 +2,7 @@ import random
 import logging
 logger = logging.getLogger(__name__)
 
+
 class Users:
     def __init__(self, spark_session, user_number):
         if isinstance(user_number, int) is True and 0 < user_number < 100000:

@@ -3,7 +3,6 @@ class Titles:
         self.__titles_df = spark_session.read.options(header=True, inferSchema=True).csv(file_name)
         self.sanitize_input()
 
-
     def get_df(self):
         return self.__titles_df
 
@@ -13,7 +12,7 @@ class Titles:
     def sanitize_input(self):
         self.set_df(self._drop_unwanted_columns(self.get_df()))
 
-    @staticmehtod
+    @staticmethod
     def _drop_unwanted_columns(self, df):
         columns_to_drop = [col for col in df.columns if col.startswith('_c')]
         return df.drop(*columns_to_drop)
