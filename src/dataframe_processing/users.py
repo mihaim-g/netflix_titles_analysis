@@ -13,7 +13,8 @@ class Users:
     def get_df(self):
         return self.__users_df
 
-    def _generate_name(self):
+    @staticmethod
+    def _generate_name():
         first_names = ('Mary', 'July', 'Andrea', 'Athena', 'Diana',
                        'Alexandra', 'John', 'Michael', 'Jeremiah', 'Bill')
         last_names = ('Dirk', 'Scott', 'Jensen', 'Miller', 'Killjoy',

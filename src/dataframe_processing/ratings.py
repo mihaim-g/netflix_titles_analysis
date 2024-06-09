@@ -10,13 +10,16 @@ class Ratings:
             logger.error("ERROR: Too many ratings, exiting!")
             self._ratings_df = None
 
+    @staticmehtod
     def _random_title_id(self, titles_number):
         number = random.randrange(1, titles_number)
         return 's' + str(number)
 
+    @staticmehtod
     def _random_user_id(self, user_number):
         return random.randrange(1, user_number+1)
 
+    @staticmehtod
     def _random_rating(self):
         return random.randrange(1, 6)
 
