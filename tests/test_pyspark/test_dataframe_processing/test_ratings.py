@@ -1,4 +1,4 @@
-from src.pyspark_files.dataframe_processing.ratings import Ratings
+from src.dataframe_processing.ratings import Ratings
 
 class TestRatings():
     def test_init(self, spark_fixture):

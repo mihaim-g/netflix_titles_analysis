@@ -1,12 +1,14 @@
 import os
-from pyspark_files.utils.aws_utils import AWSUtils
-from pyspark_files.utils.spark_session import CreateSparkSession
-from pyspark_files.dataframe_processing.netflix_titles import Titles
-from pyspark_files.dataframe_processing.users import Users
-from pyspark_files.dataframe_processing.ratings import Ratings
+from utils.aws_utils import AWSUtils
+from utils.spark_session import CreateSparkSession
+from dataframe_processing.netflix_titles import Titles
+from dataframe_processing.users import Users
+from dataframe_processing.ratings import Ratings
 
 aws_profile=os.environ['AWS_PROFILE']
-file_name=os.environ['TITLES_FILE_PATH']
+dataset_file_name=os.environ['TITLES_FILE_PATH']
+dataframe_destination = os.environ['DATAFRAME_DESTINATION']
+dataframe_writing_mode = os.environ['OVERWRITE_FILE_MODE']
 
 
 if __name__ == '__main__':
@@ -14,7 +16,7 @@ if __name__ == '__main__':
     credentials = aws_utils.get_aws_credentials()
     spark = CreateSparkSession(credentials).get_spark_session()
 
-    titles = Titles(spark, file_name)
+    titles = Titles(spark, dataset_file_name)
     title_number = titles.get_df().count()
     # We'd like around 5 times as many users as titles, at least
     user_number = title_number * 5
@@ -24,6 +26,10 @@ if __name__ == '__main__':
     titles.get_df().show(10)
     users.get_df().show(10)
     ratings.get_df().show(10)
+
+    titles.get_df().write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
+    users.get_df().write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
+    ratings.get_df().write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
 
     # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
     # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")

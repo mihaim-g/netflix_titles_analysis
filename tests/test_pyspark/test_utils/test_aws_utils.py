@@ -1,5 +1,5 @@
 from unittest.mock import patch, Mock
-from src.pyspark_files.utils.aws_utils import AWSUtils
+from src.utils.aws_utils import AWSUtils
 
 class TestAWSUtils:
     @patch('boto3.Session')
