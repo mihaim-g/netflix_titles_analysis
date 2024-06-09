@@ -26,12 +26,7 @@ class Users:
                       'Jobs', 'Gates', 'Bezos', 'Musk', 'Titus')
         return random.choice(first_names)+" "+random.choice(last_names)
 
-
-
     def __generate_user_df(self, number, spark):
-        ids = []
-        names = []
-        for i in range(number):
-            ids.append(i)
-            names.append(self.__generate_name())
+        ids = (i for i in range(0, number))
+        names = (self.__generate_name() for i in range(0, number))
         return spark.createDataFrame(zip(ids, names), ["id", "name"])
