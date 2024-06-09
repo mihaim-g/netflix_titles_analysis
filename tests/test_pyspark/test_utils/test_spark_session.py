@@ -1,4 +1,4 @@
-from src.pyspark.utils.spark_session import CreateSparkSession
+from src.pyspark_files.utils.spark_session import CreateSparkSession
 
 
 class TestSparkUtils:
