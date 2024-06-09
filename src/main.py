@@ -1,9 +1,9 @@
 import os
-from pyspark_files.utils.aws_utils import AWSUtils
-from pyspark_files.utils.spark_session import CreateSparkSession
-from pyspark_files.dataframe_processing.netflix_titles import Titles
-from pyspark_files.dataframe_processing.users import Users
-from pyspark_files.dataframe_processing.ratings import Ratings
+from utils.aws_utils import AWSUtils
+from utils.spark_session import CreateSparkSession
+from dataframe_processing.netflix_titles import Titles
+from dataframe_processing.users import Users
+from dataframe_processing.ratings import Ratings
 
 aws_profile=os.environ['AWS_PROFILE']
 file_name=os.environ['TITLES_FILE_PATH']

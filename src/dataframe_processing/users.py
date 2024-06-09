@@ -10,10 +10,8 @@ class Users:
             logger.error("ERROR: Too many users, exiting!")
             self.__users_df = None
 
-
     def get_df(self):
         return self.__users_df
-
 
     def _generate_name(self):
         first_names = ('Mary', 'July', 'Andrea', 'Athena', 'Diana',
