@@ -7,9 +7,16 @@ terraform_files/terraform.tfstate.backup
 __pycache__/
 netflix_titles_analysis.code-workspace
 <<<<<<< HEAD
+<<<<<<< HEAD
 .idea/
 .env
 =======
 .env
 .idea/
 >>>>>>> bbee980 (Added bash script to setup localstack for local dev)
+=======
+.env
+=======
+>>>>>>> 4a0ac8e (small changes)
+.idea/
+>>>>>>> 6944dfe (small changes)

@@ -14,7 +14,12 @@ class Titles:
     def sanitize_input(self):
         self.titles_df = self._drop_unwanted_columns(self.titles_df)
 
+<<<<<<< HEAD
     @staticmethod
     def _drop_unwanted_columns(df):
+=======
+    @staticmehtod
+    def _drop_unwanted_columns(self, df):
+>>>>>>> 6944dfe (small changes)
         columns_to_drop = [col for col in df.columns if col.startswith('_c')]
         return df.drop(*columns_to_drop)

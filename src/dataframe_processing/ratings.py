@@ -11,6 +11,7 @@ class Ratings:
             logger.error("ERROR: Too many ratings, exiting!")
             self._ratings_df = None
 
+<<<<<<< HEAD
     @staticmethod
     def _random_title_id(titles_number):
         number = random.randrange(1, titles_number)
@@ -22,6 +23,19 @@ class Ratings:
 
     @staticmethod
     def _random_rating():
+=======
+    @staticmehtod
+    def _random_title_id(self, titles_number):
+        number = random.randrange(1, titles_number)
+        return 's' + str(number)
+
+    @staticmehtod
+    def _random_user_id(self, user_number):
+        return random.randrange(1, user_number+1)
+
+    @staticmehtod
+    def _random_rating(self):
+>>>>>>> 6944dfe (small changes)
         return random.randrange(1, 6)
 
     def _generate_ratings_df(self, users, titles_number, spark):
