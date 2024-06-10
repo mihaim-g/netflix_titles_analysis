@@ -7,3 +7,4 @@ terraform_files/terraform.tfstate.backup
 __pycache__/
 netflix_titles_analysis.code-workspace
 .idea/
+.env
