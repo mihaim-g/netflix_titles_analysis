@@ -17,9 +17,12 @@ class Titles:
 <<<<<<< HEAD
     @staticmethod
     def _drop_unwanted_columns(df):
+<<<<<<< HEAD
 =======
     @staticmehtod
     def _drop_unwanted_columns(self, df):
 >>>>>>> 6944dfe (small changes)
+=======
+>>>>>>> 85fdf0f (Added setters and getters)
         columns_to_drop = [col for col in df.columns if col.startswith('_c')]
         return df.drop(*columns_to_drop)

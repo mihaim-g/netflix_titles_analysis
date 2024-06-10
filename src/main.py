@@ -32,9 +32,15 @@ if __name__ == '__main__':
     users.users_df.show(10)
     ratings.ratings_df.show(10)
 
+<<<<<<< HEAD
     #titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
     #users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
     #ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
+=======
+    # titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
+    # users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
+    # ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
+>>>>>>> 85fdf0f (Added setters and getters)
 
     # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
     # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")

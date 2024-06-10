@@ -13,7 +13,10 @@ pytest = "^8.2.1"
 pytest-mock = "^3.14.0"
 pandas = "^2.2.2"
 kaggle = "^1.6.14"
+<<<<<<< HEAD
 python-dotenv = "^1.0.1"
+=======
+>>>>>>> 85fdf0f (Added setters and getters)
 
 
 [build-system]

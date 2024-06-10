@@ -23,6 +23,7 @@ class Ratings:
 
     @staticmethod
     def _random_rating():
+<<<<<<< HEAD
 =======
     @staticmehtod
     def _random_title_id(self, titles_number):
@@ -36,6 +37,8 @@ class Ratings:
     @staticmehtod
     def _random_rating(self):
 >>>>>>> 6944dfe (small changes)
+=======
+>>>>>>> 85fdf0f (Added setters and getters)
         return random.randrange(1, 6)
 
     def _generate_ratings_df(self, users, titles_number, spark):

@@ -8,7 +8,11 @@ class CreateSparkSession:
         self._spark_session = self._get_spark_session(aws_credentials, env, s3_endpoint)
 
     @staticmethod
+<<<<<<< HEAD
     def _get_spark_session(aws_creds: tuple, env: str, s3_endpoint: str) -> pyspark.sql.session.SparkSession:
+=======
+    def _get_spark_session(aws_creds: tuple) -> pyspark.sql.session.SparkSession:
+>>>>>>> 85fdf0f (Added setters and getters)
         conf = SparkConf()
         if env == 'DEV':
             conf.set("fs.s3a.endpoint", s3_endpoint)
