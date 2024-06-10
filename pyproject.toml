@@ -14,9 +14,13 @@ pytest-mock = "^3.14.0"
 pandas = "^2.2.2"
 kaggle = "^1.6.14"
 <<<<<<< HEAD
+<<<<<<< HEAD
 python-dotenv = "^1.0.1"
 =======
 >>>>>>> 85fdf0f (Added setters and getters)
+=======
+python-dotenv = "^1.0.1"
+>>>>>>> a12afc1 (Added changes)
 
 
 [build-system]

@@ -8,6 +8,7 @@ __pycache__/
 netflix_titles_analysis.code-workspace
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .idea/
 .env
 =======
@@ -15,8 +16,17 @@ netflix_titles_analysis.code-workspace
 .idea/
 >>>>>>> bbee980 (Added bash script to setup localstack for local dev)
 =======
+=======
+>>>>>>> a12afc1 (Added changes)
 .env
 =======
 >>>>>>> 4a0ac8e (small changes)
 .idea/
+<<<<<<< HEAD
 >>>>>>> 6944dfe (small changes)
+=======
+=======
+.idea/
+.env
+>>>>>>> f5fb3f3 (Added changes)
+>>>>>>> a12afc1 (Added changes)
