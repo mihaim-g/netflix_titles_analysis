@@ -12,16 +12,16 @@ class Ratings:
             self._ratings_df = None
 
     @staticmethod
-    def _random_title_id(self, titles_number):
+    def _random_title_id(titles_number):
         number = random.randrange(1, titles_number)
         return 's' + str(number)
 
     @staticmethod
-    def _random_user_id(self, user_number):
+    def _random_user_id(user_number):
         return random.randrange(1, user_number+1)
 
     @staticmethod
-    def _random_rating(self):
+    def _random_rating():
         return random.randrange(1, 6)
 
     def _generate_ratings_df(self, users, titles_number, spark):
@@ -37,5 +37,6 @@ class Ratings:
                                         ["id", "user_id", "show_id", "rating"]
                                      )
 
-    def get_df(self):
+    @property
+    def ratings_df(self):
         return self._ratings_df

@@ -16,7 +16,7 @@ class TestTitles:
         df.to_csv(temp_csv_file, index=False)
 
         df_instance = Titles(spark_fixture, temp_csv_file)
-        actual_df = df_instance.get_df()
+        actual_df = df_instance.titles_df
         expected_df = spark_fixture.read.options(header=True, inferSchema=True).csv(temp_csv_file)
 
         assert actual_df.collect() == expected_df.collect()
@@ -30,7 +30,7 @@ class TestTitles:
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
-        clean_df = Titles(spark_fixture, temp_csv_file).get_df()
+        clean_df = Titles(spark_fixture, temp_csv_file).titles_df
         df = pd.DataFrame(data={
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
@@ -38,6 +38,6 @@ class TestTitles:
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
-        test_df = Titles(spark_fixture, temp_csv_file).get_df()
+        test_df = Titles(spark_fixture, temp_csv_file).titles_df
         assert test_df.collect() == clean_df.collect()
         os.remove(temp_csv_file)

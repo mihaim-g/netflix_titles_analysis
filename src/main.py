@@ -17,19 +17,19 @@ if __name__ == '__main__':
     spark = CreateSparkSession(credentials).get_spark_session()
 
     titles = Titles(spark, dataset_file_name)
-    title_number = titles.get_df().count()
+    title_number = titles.titles_df.count()
     # We'd like around 5 times as many users as titles, at least
     user_number = title_number * 5
     users = Users(spark, user_number)
     ratings = Ratings(spark, user_number, title_number)
 
-    titles.get_df().show(10)
-    users.get_df().show(10)
-    ratings.get_df().show(10)
+    titles.titles_df.show(10)
+    users.users_df.show(10)
+    ratings.ratings_df.show(10)
 
-    titles.get_df().write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
-    users.get_df().write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
-    ratings.get_df().write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
+    # titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
+    # users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
+    # ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
 
     # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
     # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")
