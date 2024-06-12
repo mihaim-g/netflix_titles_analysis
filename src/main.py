@@ -6,7 +6,8 @@ from dataframe_processing.netflix_titles import Titles
 from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 
-load_dotenv()
+load_dotenv(dotenv_path='.env')
+
 aws_profile = os.environ['AWS_PROFILE']
 dataset_file_name = os.environ['TITLES_FILE_PATH']
 dataframe_destination = os.environ['DATAFRAME_DESTINATION']
@@ -31,9 +32,9 @@ if __name__ == '__main__':
     users.users_df.show(10)
     ratings.ratings_df.show(10)
 
-    titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
-    users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
-    ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
+    #titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
+    #users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
+    #ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
 
     # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
     # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")
