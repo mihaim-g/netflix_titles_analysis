@@ -7,11 +7,16 @@ from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 load_dotenv(dotenv_path='.env')
 
 =======
 load_dotenv()
 >>>>>>> a12afc1 (Added changes)
+=======
+load_dotenv(dotenv_path='.env')
+
+>>>>>>> 1e9a1d8 (Small changes to use localstack, will need more changes)
 aws_profile = os.environ['AWS_PROFILE']
 dataset_file_name = os.environ['TITLES_FILE_PATH']
 dataframe_destination = os.environ['DATAFRAME_DESTINATION']
@@ -38,6 +43,7 @@ if __name__ == '__main__':
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     #titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
     #users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
     #ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
@@ -51,6 +57,11 @@ if __name__ == '__main__':
     users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
     ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
 >>>>>>> a12afc1 (Added changes)
+=======
+    #titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
+    #users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)
+    #ratings.ratings_df.write.parquet(dataframe_destination + "ratings/", mode=dataframe_writing_mode)
+>>>>>>> 1e9a1d8 (Small changes to use localstack, will need more changes)
 
     # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
     # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")

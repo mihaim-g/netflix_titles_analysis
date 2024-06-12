@@ -23,7 +23,11 @@ class CreateSparkSession:
         conf = SparkConf()
         if env == 'DEV':
             conf.set("fs.s3a.endpoint", s3_endpoint)
+<<<<<<< HEAD
 >>>>>>> a12afc1 (Added changes)
+=======
+            conf.set("fs.s3a.path.style.access", "true");
+>>>>>>> 1e9a1d8 (Small changes to use localstack, will need more changes)
         conf.set('fs.s3a.access.key', aws_creds[0])
         conf.set('fs.s3a.secret.key', aws_creds[1])
         return SparkSession.builder.config(conf=conf).getOrCreate()
