@@ -2,7 +2,7 @@ import boto3
 
 
 class AWSUtils:
-    def __init__(self, profile: str):
+    def __init__(self, profile: str) -> None:
         self._aws_credentials = self._read_aws_credentials(profile=profile)
 
     @staticmethod

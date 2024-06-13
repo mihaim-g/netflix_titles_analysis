@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 
 class EnvUtils:
-    def __init__(self):
+    def __init__(self) -> None:
         load_dotenv(dotenv_path='.env')
         self._aws_profile = os.environ['AWS_PROFILE']
         self._dataset_file_name = os.environ['TITLES_FILE_PATH']
