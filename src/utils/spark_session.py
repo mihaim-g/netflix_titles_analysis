@@ -17,5 +17,5 @@ class CreateSparkSession:
         conf.set('fs.s3a.secret.key', aws_creds[1])
         return SparkSession.builder.config(conf=conf).getOrCreate()
 
-    def get_spark_session(self):
+    def get_spark_session(self) -> pyspark.sql.session.SparkSession:
         return self._spark_session
