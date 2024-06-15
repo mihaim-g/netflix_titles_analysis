@@ -1,15 +1,15 @@
 data "archive_file" "fetch_dataset_to_s3_archive" {
   type = "zip"
 
-  source_dir  = "${path.module}/src/lambdas/fetch_dataset_to_s3"
-  output_path = "${path.module}/fetch_dataset_to_s3.zip"
+  source_dir  = "${path.module}/../src/lambdas/${var.fetch_dataset_to_s3_name}"
+  output_path = "${path.module}/../${var.fetch_dataset_to_s3_name}.zip"
 }
 
 resource "aws_lambda_function" "fetch_dataset_to_s3" {
-  function_name    = "fetch_dataset_to_s3"
+  function_name    = "${var.fetch_dataset_to_s3_name}"
   role             = aws_iam_role.fetch_dataset_to_s3_role.arn
-  handler          = "lambda_handler"
-  source_code_hash = filebase64sha256(data.archive_file) // or filebase64sha256(handler.zip)
+  handler          = "${var.fetch_dataset_to_s3_name}.lambda_handler"
+  source_code_hash = filebase64sha256(aws_s3_object.fetch_dataset_to_s3_object.source)
   runtime          = "python3.12"
 
   s3_bucket = aws_s3_bucket.mituca-repo1-utils.id
@@ -18,6 +18,12 @@ resource "aws_lambda_function" "fetch_dataset_to_s3" {
   depends_on = [
     aws_s3_object.fetch_dataset_to_s3_object
   ]
+
+   environment {
+    variables = {
+      api_key = "super_secret"
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "lambda_cloudwatch_log" {
@@ -27,7 +33,7 @@ resource "aws_cloudwatch_log_group" "lambda_cloudwatch_log" {
 
 
 resource "aws_iam_role" "fetch_dataset_to_s3_role" {
-  name = "fetch_dataset_to_s3-role"
+  name = "${var.fetch_dataset_to_s3_name}-role"
 
   assume_role_policy = <<EOF
 {
