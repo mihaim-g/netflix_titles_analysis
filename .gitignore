@@ -8,3 +8,4 @@ netflix_titles_analysis.code-workspace
 .idea/
 .env
 fetch_dataset_to_s3.zip
+.aws-sam-iacs/
