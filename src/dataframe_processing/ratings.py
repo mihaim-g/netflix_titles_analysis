@@ -16,8 +16,7 @@ class Ratings:
 
     @staticmethod
     def _random_title_id(titles_number: int) -> str:
-        number = random.randrange(1, titles_number)
-        return 's' + str(number)
+        return random.randrange(1, titles_number)
 
     @staticmethod
     def _random_user_id(user_number: int) -> int:

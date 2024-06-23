@@ -1,6 +1,6 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.session import SparkSession
-from pyspark.sql.functions import substring_index
+from pyspark.sql.functions import substring_index, to_date
 
 
 class Titles:
@@ -19,6 +19,7 @@ class Titles:
     def sanitize_input(self) -> None:
         self.titles_df = self._drop_unwanted_columns(self.titles_df)
         self.titles_df = self._clean_show_id(self.titles_df)
+        self.titles_df = self._format_date_added(self.titles_df)
 
     @staticmethod
     def _drop_unwanted_columns(df: DataFrame) -> DataFrame:
@@ -26,5 +27,10 @@ class Titles:
         return df.drop(*columns_to_drop)
 
     @staticmethod
-    def _clean_show_id(df: DataFrame) -> None:
-        return df.withColumn('show_id', substring_index(df["show_id"], "s", -1).alias("show_id"))
+    def _clean_show_id(df: DataFrame) -> DataFrame:
+        return df.withColumn('show_id', substring_index(df["show_id"], "s", -1))
+
+    @staticmethod
+    def _format_date_added(df: DataFrame) -> DataFrame:
+        df = df.withColumn('date_added', to_date(df['date_added'], 'MMMM dd, yyyy')).drop('release_year')
+        return df
