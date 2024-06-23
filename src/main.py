@@ -6,11 +6,12 @@ from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 
 
+
 if __name__ == '__main__':
     env = EnvUtils()
     aws_utils = AWSUtils(env.aws_profile)
     credentials = aws_utils.get_aws_credentials()
-    spark = CreateSparkSession(credentials, env.env, env.s3_endpoint).get_spark_session()
+    spark = CreateSparkSession(credentials, env.env, env.s3_endpoint)
 
     titles = Titles(spark, env.dataset_file_name)
     title_number = titles.titles_df.count()
@@ -33,3 +34,5 @@ if __name__ == '__main__':
     # print(f"Min user_id is: {ratings.get_df().agg({"user_id": "min"}).collect()[0][0]}")
     # print(f"Max show_id is: {ratings.get_df().agg({"show_id": "max"}).collect()[0][0]}")
     # print(f"Min show_id is: {ratings.get_df().agg({"show_id": "min"}).collect()[0][0]}")]
+
+    spark.stop()

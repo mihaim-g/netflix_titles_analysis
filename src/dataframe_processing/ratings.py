@@ -35,10 +35,11 @@ class Ratings:
         user_ids = (self._random_user_id(users) for i in range(1, number_of_ratings + 1))
         title_ids = (self._random_title_id(titles_number) for i in range(1, number_of_ratings + 1))
         ratings = (self._random_rating() for i in range(1, number_of_ratings + 1))
-        return spark.createDataFrame(
+        df = spark.createDataFrame(
             zip(ids, user_ids, title_ids, ratings),
             ["id", "user_id", "show_id", "rating"]
         )
+        return df
 
     @property
     def ratings_df(self) -> DataFrame:
