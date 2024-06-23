@@ -1,7 +1,7 @@
 import os
 from unittest.mock import patch
 import pandas as pd
-from src.dataframe_processing.netflix_titles import Titles
+from src.dataframe_processing.titles import Titles
 
 
 class TestTitles:
@@ -25,6 +25,7 @@ class TestTitles:
 
     def test_sanitize_input(self, spark_fixture):
         df = pd.DataFrame(data={
+            'show_id': ['s1', 's2'],
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
         })
@@ -32,6 +33,7 @@ class TestTitles:
         df.to_csv(temp_csv_file, index=False)
         clean_df = Titles(spark_fixture, temp_csv_file).titles_df
         df = pd.DataFrame(data={
+            'show_id': ['s1', 's2'],
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
             '_c01': [None, None]
