@@ -1,6 +1,7 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.session import SparkSession
 from pyspark.sql.functions import substring_index, to_date
+from pyspark.sql.types import IntegerType
 
 
 class Titles:
@@ -21,6 +22,7 @@ class Titles:
         self.titles_df = self._clean_show_id(self.titles_df)
         self.titles_df = self._format_date_added(self.titles_df)
 
+
     @staticmethod
     def _drop_unwanted_columns(df: DataFrame) -> DataFrame:
         columns_to_drop = [col for col in df.columns if col.startswith('_c')]
@@ -28,9 +30,10 @@ class Titles:
 
     @staticmethod
     def _clean_show_id(df: DataFrame) -> DataFrame:
-        return df.withColumn('show_id', substring_index(df["show_id"], "s", -1))
+        df = df.withColumn('show_id', substring_index(df["show_id"], "s", -1))
+        return df.withColumn('show_id', df['show_id'].cast(IntegerType()))
 
     @staticmethod
     def _format_date_added(df: DataFrame) -> DataFrame:
-        df = df.withColumn('date_added', to_date(df['date_added'], 'MMMM dd, yyyy')).drop('release_year')
-        return df
+        return (df.withColumn('date_added', to_date(df['date_added'], 'MMMM dd, yyyy')).
+                drop('release_year'))

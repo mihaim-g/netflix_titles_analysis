@@ -1,4 +1,4 @@
-from pyspark.sql.types import LongType, StringType
+from pyspark.sql.types import LongType,IntegerType ,StringType
 from src.dataframe_processing.users import Users
 
 
@@ -10,7 +10,7 @@ class TestUsers:
         actual_df = users.users_df
         expected_df = spark_fixture.createDataFrame(raw_input, ["id", "name"])
 
-        assert isinstance(actual_df.schema["id"].dataType, LongType) is True
+        assert isinstance(actual_df.schema["id"].dataType, IntegerType) is True
         assert isinstance(expected_df.schema["id"].dataType, LongType) is True
         assert isinstance(actual_df.schema["name"].dataType, StringType) is True
         assert isinstance(expected_df.schema["name"].dataType, StringType) is True

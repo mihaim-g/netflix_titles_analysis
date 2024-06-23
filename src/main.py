@@ -18,10 +18,6 @@ if __name__ == '__main__':
         users = Users(spark, user_number)
         ratings = Ratings(spark, user_number, title_number)
 
-        titles.titles_df.printSchema()
-        users.users_df.printSchema()
-        ratings.ratings_df.printSchema()
-
         titles.titles_df.show(10)
         users.users_df.show(10)
         ratings.ratings_df.show(10)
