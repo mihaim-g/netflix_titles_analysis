@@ -12,10 +12,6 @@ class CreateSparkSession(object):
             # Put any initialization here.
         return cls._instance
 
-# class CreateSparkSession:
-#     def __init__(self, aws_credentials: tuple, env: str, s3_endpoint: str) -> None:
-#         self._spark_session = self._get_spark_session(aws_credentials, env, s3_endpoint)
-#
     @staticmethod
     def _get_spark_session(aws_creds: tuple, env: str, s3_endpoint: str) -> SparkSession:
         conf = SparkConf()
