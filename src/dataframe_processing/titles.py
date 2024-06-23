@@ -27,4 +27,4 @@ class Titles:
 
     @staticmethod
     def _clean_show_id(df: DataFrame) -> None:
-        return df.withColumn('show_id',substring_index(df["show_id"], "s", -1).alias("show_id"))
+        return df.withColumn('show_id', substring_index(df["show_id"], "s", -1).alias("show_id"))
