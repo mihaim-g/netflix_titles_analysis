@@ -40,5 +40,8 @@ class Titles:
     def _format_date_added(df: DataFrame) -> DataFrame:
         # The following line converts original dates in the following format: "September 21, 2003" to
         # date, and drops the 'release_year' column at the end as it's redundandt
-        return (df.withColumn('date_added', to_date(df['date_added'], 'MMMM dd, yyyy')).
+        return (df.withColumn('date_added', to_date(df['date_added'], 'MMMM d, yyyy')).
                 drop('release_year'))
+
+    def save_parquet_to_s3(self, destination: str, overwrite_mode: str) -> None:
+        self.titles_df.write.parquet(destination + 'titles/', mode=overwrite_mode)

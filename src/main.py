@@ -18,9 +18,13 @@ if __name__ == '__main__':
         users = Users(spark, user_number)
         ratings = Ratings(spark, user_number, title_number)
 
-        titles.titles_df.show(10)
+        titles.titles_df.show(1000)
         users.users_df.show(10)
         ratings.ratings_df.show(10)
+
+        titles.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
+        users.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
+        ratings.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
 
         # titles.titles_df.write.parquet(dataframe_destination + "titles/", mode=dataframe_writing_mode)
         # users.users_df.write.parquet(dataframe_destination + "users/", mode=dataframe_writing_mode)

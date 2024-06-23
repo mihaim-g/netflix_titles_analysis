@@ -33,3 +33,6 @@ class Users:
         ids = (i for i in range(1, number+1))
         names = (self._generate_name() for i in range(0, number))
         return spark.createDataFrame(zip(ids, names), schema=schema)
+
+    def save_parquet_to_s3(self, destination: str, overwrite_mode: str) -> None:
+        self.users_df.write.parquet(destination + 'users/', mode=overwrite_mode)
