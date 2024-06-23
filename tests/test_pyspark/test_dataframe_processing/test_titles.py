@@ -28,6 +28,7 @@ class TestTitles:
             'show_id': ['s1', 's2'],
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
+            'date_added': ['21 September, 2001', '05 May, 2022']
         })
         temp_csv_file = 'test.csv'
         df.to_csv(temp_csv_file, index=False)
@@ -36,6 +37,7 @@ class TestTitles:
             'show_id': ['s1', 's2'],
             'title': ['Title1', 'Title2'],
             'year': [2001, 2002],
+            'date_added': ['21 September, 2001', '05 May, 2022'],
             '_c01': [None, None]
         })
         temp_csv_file = 'test.csv'

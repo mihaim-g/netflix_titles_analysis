@@ -1,5 +1,6 @@
 import random
 import logging
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType
 logger = logging.getLogger(__name__)
 
 
@@ -24,6 +25,10 @@ class Users:
         return random.choice(first_names)+" "+random.choice(last_names)
 
     def _generate_user_df(self, number, spark):
+        schema = StructType([
+            StructField('id', IntegerType(), False),
+            StructField('name', StringType(), True)
+        ])
         ids = (i for i in range(1, number+1))
         names = (self._generate_name() for i in range(0, number))
-        return spark.createDataFrame(zip(ids, names), ["id", "name"])
+        return spark.createDataFrame(zip(ids, names), schema=schema)
