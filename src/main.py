@@ -1,7 +1,7 @@
 from utils.environment_utils import EnvUtils
 from utils.aws_utils import AWSUtils
 from utils.spark_session import CreateSparkSession
-from dataframe_processing.netflix_titles import Titles
+from dataframe_processing.titles import Titles
 from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 
