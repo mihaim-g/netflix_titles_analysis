@@ -7,7 +7,7 @@ class EnvUtils:
         load_dotenv(dotenv_path='.env')
         self._aws_profile = os.environ['AWS_PROFILE']
         self._dataset_file_name = os.environ['TITLES_FILE_PATH']
-        self._dataframe_destination = os.environ['DATAFRAME_DESTINATION']
+        self._dataframe_destination = os.environ['DATAFRAME_DESTINATION_BASE_BUCKET']
         self._dataframe_writing_mode = os.environ['OVERWRITE_FILE_MODE']
         if 'ENVIRONMENT' in os.environ:
             self._env = os.environ['ENVIRONMENT']

@@ -46,3 +46,6 @@ class Ratings:
     @property
     def ratings_df(self) -> DataFrame:
         return self._ratings_df
+
+    def save_parquet_to_s3(self, destination: str, overwrite_mode: str) -> None:
+        self.ratings_df.write.parquet(destination + 'ratings/', mode=overwrite_mode)
