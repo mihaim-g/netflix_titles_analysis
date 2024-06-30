@@ -5,11 +5,10 @@ from pyspark.sql import SparkSession
 class CreateSparkSession(object):
     _instance = None
 
-    def __new__(cls, aws_credentials: tuple, env: str, s3_endpoint: str) -> SparkSession:
+    def __new__(cls, aws_credentials: tuple, env: str, s3_endpoint: str) -> None:
         if cls._instance is None:
             cls._instance = super(CreateSparkSession, cls).__new__(cls)
             cls._instance = cls._get_spark_session(aws_credentials, env, s3_endpoint)
-            # Put any initialization here.
         return cls._instance
 
     @staticmethod
