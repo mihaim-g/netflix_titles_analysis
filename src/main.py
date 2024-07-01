@@ -23,7 +23,7 @@ if __name__ == '__main__':
         # titles.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
         # users.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
         # ratings.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
-        
+
         prepared_data = PrepareData(ratings.ratings_df)
         prepared_data.prepared_data_df.show(10)
 
