@@ -5,6 +5,7 @@ from dataframe_processing.titles import Titles
 from dataframe_processing.users import Users
 from dataframe_processing.ratings import Ratings
 from reccomendations.prepare_data import PrepareData
+from reccomendations.training_model import TrainModel
 
 
 if __name__ == '__main__':
@@ -24,8 +25,12 @@ if __name__ == '__main__':
         # users.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
         # ratings.save_parquet_to_s3(env.dataframe_destination, env.dataframe_writing_mode)
 
-        prepared_data = PrepareData(ratings.ratings_df)
-        prepared_data.prepared_data_df.show(10)
+        # Code for a basic model
+        # prepared_data = PrepareData(ratings.ratings_df)
+        # prepared_data.prepared_data_df.show(10)
+        # model = TrainModel(prepared_data.prepared_data_df)
+        # user_eval_df = spark.createDataFrame(model.user_eval)
+        # user_eval_df.show(50)
 
         # print(f"Max rating_id is: {ratings.get_df().agg({"id": "max"}).collect()[0][0]}")
         # print(f"Min rating_id is: {ratings.get_df().agg({"id": "min"}).collect()[0][0]}")
@@ -33,4 +38,3 @@ if __name__ == '__main__':
         # print(f"Min user_id is: {ratings.get_df().agg({"user_id": "min"}).collect()[0][0]}")
         # print(f"Max show_id is: {ratings.get_df().agg({"show_id": "max"}).collect()[0][0]}")
         # print(f"Min show_id is: {ratings.get_df().agg({"show_id": "min"}).collect()[0][0]}")]
-
