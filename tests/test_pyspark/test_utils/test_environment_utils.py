@@ -9,7 +9,7 @@ def mock_env_vars():
     with patch.dict(os.environ, {
         'AWS_PROFILE': 'mock_aws_profile',
         'TITLES_FILE_PATH': 'mock_titles_file_path',
-        'DATAFRAME_DESTINATION': 'mock_dataframe_destination',
+        'DATAFRAME_DESTINATION_BASE_BUCKET': 'mock_dataframe_destination',
         'OVERWRITE_FILE_MODE': 'mock_overwrite_file_mode',
         'ENVIRONMENT': 'mock_environment',
         'S3_ENDPOINT': 'mock_s3_endpoint'
