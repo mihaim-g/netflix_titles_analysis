@@ -8,3 +8,4 @@ netflix_titles_analysis.code-workspace
 .idea/
 .env
 .aws-sam-iacs/
+bin/
